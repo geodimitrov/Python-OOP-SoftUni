@@ -1,5 +1,4 @@
-# Use dist() from math module to calc distance between points
-from math import dist
+import math
 
 class Point:
     def __init__(self, x, y):
@@ -13,14 +12,18 @@ class Point:
         self.y = new_y
 
     def distance(self, x, y):
-        return dist((self.x, self.y), (x, y))
+        point_a = (self.x, self.y)
+        point_b = (x, y)
+        return math.dist(point_a, point_b)
 
 
-# Test Code
+# # Test Code
 p = Point(2, 4)
 p.set_x(3)
 p.set_y(5)
 print(p.distance(10, 2))
+p_2 = Point(10, 11)
+print(p_2.distance(5, 20))
 
 import unittest
 
