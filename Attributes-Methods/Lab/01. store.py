@@ -5,14 +5,18 @@ class Store:
         self.capacity = capacity
         self.items = {}
 
-    @staticmethod
-    def from_size(name, type, size):
+    def __repr__(self):
+        return f"{self.name} of type {self.type} with capacity {self.capacity}"
+
+    @classmethod
+    def from_size(cls, name, type, size):
         capacity = size // 2
-        return Store(name, type, capacity)
+        return cls(name, type, capacity)
 
 
     def add_item(self, item_name: str):
-        if sum([key for key in self.items.keys()]) + 1 > self.capacity:
+        total_items_count = sum(key for key in self.items.keys())
+        if total_items_count + 1 > self.capacity:
             return "Not enough capacity in the store"
 
         if item_name not in self.items:
@@ -26,9 +30,6 @@ class Store:
             return f"{amount} {item_name} removed from the store"
         return f"Cannot remove {amount} {item_name}"
 
-
-    def __repr__(self):
-        return f"{self.name} of type {self.type} with capacity {self.capacity}"
 
 # Test Code
 first_store = Store("First store", "Fruit and Veg", 20)
