@@ -40,7 +40,7 @@ class Integer:
 
     @classmethod
     def from_string(cls, value):
-        if not isinstance(value)
+        if not isinstance(value, str):
             return "wrong type"
         return cls(int(value))
 
@@ -52,11 +52,7 @@ class Integer:
 
 # Test code
 first_num = Integer(10)
-print(first_num.value)
 second_num = Integer.from_roman("IV")
-print(second_num.value)
-third_num = Integer.from_string("7")
-print(third_num)
 
 print(Integer.from_float("2.6"))
 print(Integer.from_string(2.6))
