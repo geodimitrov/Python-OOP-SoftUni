@@ -6,7 +6,11 @@ class User:
 
 
     def get_book(self, author, book_name, days_to_return, library):
-        pass
+        if book_name in library.books_available.values():
+            self.books.append(book_name)
+            library
+
+
 
     def return_book(author, book_name, library):
         pass
