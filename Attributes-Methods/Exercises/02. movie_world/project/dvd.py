@@ -16,7 +16,7 @@ class DVD:
         self.is_rented = False
 
     def __repr__(self):
-        return f"{self.id}: {self.name} ({self.creation_month}\
+        return f"{self.id}: {self.name} ({self.creation_month} \
 {self.creation_year}) has age restriction {self.age_restriction}. \
 Status: {'rented' if self.is_rented else 'not rented'}"
 
@@ -24,4 +24,4 @@ Status: {'rented' if self.is_rented else 'not rented'}"
     def from_date(cls, id, name, date, age_restriction):
         month, year = date.split(".")[1:]
         month_str = DVD.__months[month]
-        return cls(name, id, year, month_str, age_restriction)
+        return cls(name, id, int(year), month_str, age_restriction)
