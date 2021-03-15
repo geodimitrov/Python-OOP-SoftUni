@@ -9,7 +9,7 @@ class Shape(ABC):
     def calculate_perimeter(self):
         pass
 
-class Circle:
+class Circle(Shape):
     def __init__(self, radius):
         self.__radius = radius
 
@@ -19,7 +19,7 @@ class Circle:
     def calculate_perimeter(self):
         return 2 * pi * self.__radius
 
-class Rectangle:
+class Rectangle(Shape):
     def __init__(self, width, height):
         self.__width = width
         self.__height = height
