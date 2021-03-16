@@ -16,7 +16,7 @@ class Group:
         self.people = people
 
     def __repr__(self):
-        return f"Group {self.name} with members {', '.join((f'{person.name} {person.surname}' for person in self.people))}"
+        return f"Group {self.name} with members {', '.join([f'{person.name} {person.surname}' for person in self.people])}"
 
     def __len__(self):
         return len(self.people)
@@ -26,6 +26,10 @@ class Group:
 
     def __getitem__(self, item):
         return self.people[item]
+
+    def __iter__(self):
+        return "BBB"
+
 
 
 #test code
@@ -46,3 +50,4 @@ print(third_group[0])
 #
 for person in third_group:
     print(person)
+
