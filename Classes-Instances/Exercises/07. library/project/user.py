@@ -7,16 +7,29 @@ class User:
     def __repr__(self):
         return f"{self.user_id}, {self.username}, {self.books}"
 
+    @staticmethod
+    def is_available(book_name, author, library):
+        return book_name in library.books_available[author]
+
+    @staticmethod
+    def is_rented(book_name, library):
+        for book in library.rented_books.values():
+            if book_name in book:
+                return True
+
+    def rent_book(self, book_name, author, library, days_to_return):
+        self.books.append(book_name)
+        library.books_available[author].remove(book_name)
+        if self.username not in library.rented_books:
+            library.rented_books[self.username] = {}
+        library.rented_books[self.username][book_name] = days_to_return
+
     def get_book(self, author, book_name, days_to_return, library):
-        if book_name in library.books_available[author]:
-            self.books.append(book_name)
-            library.books_available[author].remove(book_name)
-            if self.username not in library.rented_books:
-                library.rented_books[self.username] = {}
-            library.rented_books[self.username][book_name] = days_to_return
+        if self.is_available(book_name, author, library):
+            self.rent_book(book_name, author, library, days_to_return)
             return f"{book_name} successfully rented for the next {days_to_return} days!"
 
-        if self.username in library.rented_books and book_name in library.rented_books[self.username]:
+        if self.is_rented(book_name, library):
             return f'The book "{book_name}" is already rented and will be available in \
 {days_to_return} days!'
 

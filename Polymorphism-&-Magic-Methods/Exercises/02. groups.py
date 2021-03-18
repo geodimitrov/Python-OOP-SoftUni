@@ -3,7 +3,7 @@ class Person:
         self.name = name
         self.surname = surname
 
-    def __repr__(self):
+    def __str__(self):
         return f"{self.name} {self.surname}"
 
     def __add__(self, other):
@@ -13,23 +13,19 @@ class Person:
 class Group:
     def __init__(self, name, people):
         self.name = name
-        self.people = people
+        self.people = people  #list of persons
 
     def __repr__(self):
-        return f"Group {self.name} with members {', '.join([f'{person.name} {person.surname}' for person in self.people])}"
+        return f"Group {self.name} with members {', '.join([str(person) for person in self.people])}"
+
+    def __add__(self, other):
+        return Group(f"{self.name}&{other.name}", self.people + other.people)
 
     def __len__(self):
         return len(self.people)
 
-    def __add__(self, other):
-        return Group(f'{self.name}&{other.name}', self.people + other.people)
-
     def __getitem__(self, item):
         return self.people[item]
-
-    def __iter__(self):
-        return "BBB"
-
 
 
 #test code
@@ -38,16 +34,17 @@ p1 = Person('Bill', 'Gates')
 p2 = Person('Warren', 'Buffet')
 p3 = Person('Elon', 'Musk')
 p4 = p2 + p3
-print(p4)
+
 
 first_group = Group('__VIP__', [p0, p1, p2])
 second_group = Group('Special', [p3, p4])
 third_group = first_group + second_group
 
 print(len(first_group))
+print(len(third_group))
 print(second_group)
 print(third_group[0])
-#
+
 for person in third_group:
     print(person)
 
