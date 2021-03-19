@@ -4,10 +4,6 @@ class Tiger:
         self.gender = gender
         self.age = age
 
-    @classmethod
-    def get_class_type(cls):
-        return Tiger.__name__
-
     def get_needs(self):
         return 45
 

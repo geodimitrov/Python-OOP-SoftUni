@@ -4,10 +4,6 @@ class Cheetah:
         self.gender = gender
         self.age = age
 
-    @classmethod
-    def get_class_type(cls):
-        return Cheetah.__name__
-
     def get_needs(self):
         return 60
 
