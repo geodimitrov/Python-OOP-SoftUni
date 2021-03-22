@@ -4,7 +4,6 @@ class dictionary_iter:
         self.keys = [key for key in self.dict]
         self.index = 0
 
-
     def __iter__(self):
         return self
 
@@ -12,8 +11,9 @@ class dictionary_iter:
         if self.index >= len(self.keys):
             raise StopIteration
         key = self.keys[self.index]
+        value = self.dict[key]
         self.index += 1
-        return (key, self.dict[key])
+        return key, value
 
 
 # test code
