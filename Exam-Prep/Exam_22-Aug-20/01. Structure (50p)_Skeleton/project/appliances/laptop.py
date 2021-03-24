@@ -1,7 +1,8 @@
 from project.appliances.appliance import Appliance
 
-class TV(Appliance):
-    TV_COST = 1.5
+
+class Laptop(Appliance):
+    COST = 1.0
 
     def __init__(self):
-        super().__init__(TV.TV_COST)
+        super().__init__(self.COST)

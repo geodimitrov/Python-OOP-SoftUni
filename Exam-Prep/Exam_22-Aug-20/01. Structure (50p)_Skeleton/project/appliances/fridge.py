@@ -1,7 +1,9 @@
 from project.appliances.appliance import Appliance
 
+
 class Fridge(Appliance):
-    FRIDGE_COST = 1.2
+    COST = 1.2
 
     def __init__(self):
-        super().__init__(Fridge.FRIDGE_COST)
+        super().__init__(self.COST)
+
