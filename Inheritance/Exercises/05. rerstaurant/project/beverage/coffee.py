@@ -12,4 +12,3 @@ class Coffee(HotBeverage):
     @property
     def caffeine(self):
         return self.__caffeine
-    
