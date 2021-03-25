@@ -2,9 +2,9 @@ from project.food.dessert import Dessert
 
 
 class Cake(Dessert):
-    __GRAMS = 250
-    __CALORIES = 1000
-    __PRICE = 5
+    GRAMS = 250
+    CALORIES = 1000
+    PRICE = 5
 
     def __init__(self, name):
-        super().__init__(name, Cake.__PRICE, Cake.__GRAMS, Cake.__PRICE)
+        super().__init__(name, self.PRICE, self.GRAMS, self.CALORIES)

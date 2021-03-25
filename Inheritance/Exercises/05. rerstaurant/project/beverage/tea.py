@@ -1,4 +1,4 @@
-from project.beverage.beverage import Beverage
+from project.beverage.hot_beverage import HotBeverage
 
-class Tea(Beverage):
+class Tea(HotBeverage):
     pass
