@@ -71,6 +71,6 @@ class Car:
 
         self.__fuel_amount -= needed
 
-car = Car("a", "b", 1, 4)
-car.make = ""
-print(car)
+# car = Car("a", "b", 1, 4)
+# car.make = ""
+# print(car)
