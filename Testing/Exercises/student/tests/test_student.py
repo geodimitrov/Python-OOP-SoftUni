@@ -19,7 +19,13 @@ class StudentTests(unittest.TestCase):
 
     def test_student_enroll__if_course_not_found_and_notes_to_add__expect_to_add_course_and_notes(self):
         expected_msg = "Course and course notes have been added."
-        actual_msg = self.student.enroll("Fundamentals", ["note1, note2"])
+        actual_msg = self.student.enroll("Fundamentals", ["note1, note2"], "")
+        self.assertEqual(expected_msg, actual_msg)
+        self.assertEqual(["note1, note2"], self.student.courses["Fundamentals"])
+
+    def test_student_enroll__if_course_not_found_and_notes_to_add_is_Y_expect_to_add_course_and_notes(self):
+        expected_msg = "Course and course notes have been added."
+        actual_msg = self.student.enroll("Fundamentals", ["note1, note2"], "Y")
         self.assertEqual(expected_msg, actual_msg)
         self.assertEqual(["note1, note2"], self.student.courses["Fundamentals"])
 
@@ -57,6 +63,8 @@ class StudentTests(unittest.TestCase):
         expected_msg = "Course has been removed"
         actual_msg = self.student.leave_course("OOP")
         self.assertEqual(expected_msg, actual_msg)
+        self.assertEqual({}, self.student.courses)
 
 if __name__ == "__main__":
     unittest.main()
+
