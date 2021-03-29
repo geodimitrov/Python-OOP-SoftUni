@@ -1,12 +1,16 @@
 from abc import ABC
 
 class Card(ABC):
-    EMPTY_STRING = ""
-
     def __init__(self, name, damage_points, health_points):
         self.name = name
         self.damage_points = damage_points
         self.health_points = health_points
+
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        return f"### Card: {self.name} - Damage: {self.damage_points}"
 
     @property
     def name(self):
@@ -14,7 +18,7 @@ class Card(ABC):
 
     @name.setter
     def name(self, value):
-        if value == self.EMPTY_STRING:
+        if not value:
             raise ValueError("Card's name cannot be an empty string.")
         self.__name = value
 
@@ -30,13 +34,10 @@ class Card(ABC):
 
     @property
     def health_points(self):
-        return self.__damage_points
+        return self.__health_points
 
     @health_points.setter
     def health_points(self, value):
         if value < 0:
             raise ValueError("Card's HP cannot be less than zero.")
         self.__health_points = value
-
-# card = Card("OrcSlayer", 20, 20)
-# print(card.__dict__)

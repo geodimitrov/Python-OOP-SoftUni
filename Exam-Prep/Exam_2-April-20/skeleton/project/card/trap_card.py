@@ -1,6 +1,5 @@
 from project.card.card import Card
 
-
 class TrapCard(Card):
     DAMAGE_POINTS = 120
     HEALTH_POINTS = 5

@@ -1,6 +1,5 @@
 from project.card.card import Card
 
-
 class CardRepository:
     def __init__(self):
         self.count = 0

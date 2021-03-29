@@ -1,33 +1,40 @@
-from project.player.player import Player
+from project.player.beginner import Beginner
 
 
 class BattleField:
-
     @staticmethod
-    def get_bonus_health_points(player):
-        total_bonus_health_points = sum(c.health_points for c in player.card_repository)
-        player.health += total_bonus_health_points
+    def validate_player(player):
+        if player.is_dead:
+            raise ValueError("Player is dead!")
 
     @staticmethod
     def check_player_type(player):
-        if player.__class__.__name__ == "Beginner":
+        if isinstance(player, Beginner):
             player.health += 40
-            for card in player.card_repository:
+            for card in player.card_repository.cards:
                 card.damage_points += 30
 
     @staticmethod
-    def attack(player1, player2):
+    def deal_damage(player1, player2):
         for card in player1.card_repository.cards:
-            player2.health -= card.damage_points
+            if player2.is_dead:
+                return
+            player2.take_damage(card.damage_points)
 
     @staticmethod
-    def fight(attacker: Player, enemy: Player):
-        BattleField.check_player_type(attacker)
-        BattleField.check_player_type(enemy)
-        BattleField.get_bonus_health_points(attacker)
-        BattleField.get_bonus_health_points(enemy)
-        while not attacker.is_dead or enemy.is_dead:
-            BattleField.attack(attacker, enemy)
-            BattleField.attack(enemy, attacker)
-            if attacker.is_dead or enemy.is_dead:
-                raise ValueError("Player is dead!")
+    def attack(attacker, enemy):
+        BattleField.deal_damage(attacker, enemy)
+        if enemy.is_dead:
+            return
+        BattleField.deal_damage(enemy, attacker)
+        if attacker.is_dead:
+            return
+
+    def fight(self, attacker, enemy):
+        self.validate_player(attacker)
+        self.validate_player(enemy)
+        self.check_player_type(attacker)
+        self.check_player_type(enemy)
+        attacker.add_bonus_health_points()
+        enemy.add_bonus_health_points()
+        self.attack(attacker, enemy)

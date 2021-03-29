@@ -1,6 +1,5 @@
 from project.player.player import Player
 
-
 class PlayerRepository:
     def __init__(self):
         self.count = 0
@@ -13,7 +12,7 @@ class PlayerRepository:
         self.count += 1
 
     def remove(self, player: str):
-        if player == "":
+        if not player:
             raise ValueError("Player cannot be an empty string!")
         player_obj = [p for p in self.players if str(p) == player][0]
         self.players.remove(player_obj)
