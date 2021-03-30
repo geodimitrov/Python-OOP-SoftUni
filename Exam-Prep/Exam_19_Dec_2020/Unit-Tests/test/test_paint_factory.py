@@ -6,7 +6,7 @@ class PaintFactoryTests(unittest.TestCase):
     def setUp(self):
         self.factory = PaintFactory("A Factory", 3)
 
-    def test_paint_factory_init__expect_initialization(self):
+    def test_paint_factory_init__expect_correct_result_upon_initialization(self):
         self.assertEqual("A Factory", self.factory.name)
         self.assertEqual(3, self.factory.capacity)
         self.assertEqual({}, self.factory.ingredients)
@@ -24,14 +24,17 @@ class PaintFactoryTests(unittest.TestCase):
         self.factory.add_ingredient("white", 1)
         self.assertEqual(1, self.factory.ingredients["white"])
 
-    def test_paint_factory_remove_ingredient(self):
+    def test_paint_factory_remove_ingredient__if_ingredient_not_found__expect_exception(self):
         with self.assertRaises(KeyError) as ex:
             self.factory.remove_ingredient("WHITE", 2)
 
+    def test_paint_factory_remove_ingredient__if_not_enough_quantity_to_remove__expect_exception(self):
         self.factory.add_ingredient("white", 2)
         with self.assertRaises(ValueError) as ex:
             self.factory.remove_ingredient("white", 3)
 
+    def test_paint_factory_remove_ingredient__if_enough_quantity_to_remove__expect_correct_result(self):
+        self.factory.add_ingredient("white", 2)
         self.factory.remove_ingredient("white", 2)
         self.assertEqual(0, self.factory.ingredients["white"])
 
