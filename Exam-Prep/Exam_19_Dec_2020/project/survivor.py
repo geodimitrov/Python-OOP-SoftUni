@@ -1,11 +1,11 @@
 class Survivor:
     MAX_VALUE = 100
 
-    def __init__(self, name, age):
+    def __init__(self, name, age, health=100, needs=100):
         self.name = name
         self.age = age
-        self.health = self.MAX_VALUE
-        self.needs = self.MAX_VALUE
+        self.health = health
+        self.needs = needs
 
     @property
     def name(self):
@@ -35,6 +35,8 @@ class Survivor:
     def health(self, value):
         if value < 0:
             raise ValueError("Health not valid!")
+        elif value > self.MAX_VALUE:
+            value = self.MAX_VALUE
         self.__health = value
 
     @property
@@ -45,6 +47,8 @@ class Survivor:
     def needs(self, value):
         if value < 0:
             raise ValueError("Needs not valid!")
+        elif value > self.MAX_VALUE:
+            value = self.MAX_VALUE
         self.__needs = value
 
     @property

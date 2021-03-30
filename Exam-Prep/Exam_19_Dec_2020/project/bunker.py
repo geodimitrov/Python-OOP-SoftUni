@@ -1,9 +1,4 @@
-from project.medicine.salve import Salve
-from project.supply.food_supply import FoodSupply
-from project.supply.water_supply import WaterSupply
-from project.medicine.painkiller import Painkiller
 from project.survivor import Survivor
-
 
 class Bunker:
     def __init__(self):
