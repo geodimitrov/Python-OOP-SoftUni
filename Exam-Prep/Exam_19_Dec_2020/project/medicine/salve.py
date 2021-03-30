@@ -6,3 +6,6 @@ class Salve(Medicine):
 
     def __init__(self):
         super().__init__(self.HEALTH_INCREASE)
+
+    def __str__(self):
+        return "salve"

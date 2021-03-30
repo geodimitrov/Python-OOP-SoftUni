@@ -5,3 +5,6 @@ class FoodSupply(Supply):
 
     def __init__(self):
         super().__init__(self.NEEDS_INCREASE)
+
+    def __str__(self):
+        return "food"

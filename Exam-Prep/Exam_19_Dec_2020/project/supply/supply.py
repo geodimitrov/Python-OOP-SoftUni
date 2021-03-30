@@ -1,4 +1,4 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 
 
 class Supply(ABC):
@@ -16,5 +16,9 @@ class Supply(ABC):
             raise ValueError("Needs increase cannot be less than zero.")
         self.__needs_increase = value
 
+    @abstractmethod
+    def __str__(self):
+        pass
+
     def apply(self, survivor):
-        survivor.needs += self.needs_increase
+        survivor.needs += self.__needs_increase

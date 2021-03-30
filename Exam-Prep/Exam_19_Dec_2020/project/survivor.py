@@ -4,8 +4,8 @@ class Survivor:
     def __init__(self, name, age):
         self.name = name
         self.age = age
-        self.health = 100
-        self.needs = 100
+        self.health = self.MAX_VALUE
+        self.needs = self.MAX_VALUE
 
     @property
     def name(self):
