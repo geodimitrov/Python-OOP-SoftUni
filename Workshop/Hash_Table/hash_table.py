@@ -55,8 +55,8 @@ class HashTable:
         return self.values[value_index]
 
 
-# table = HashTable()
-#
+table = HashTable()
+
 # table["name"] = "Peter"
 # print(table)
 # table["name"] = "George"
@@ -72,3 +72,6 @@ class HashTable:
 # print(table.get("name"))
 # print(table["age"])
 # print(len(table))
+
+table.add("Key1", "value1")
+print(table)
