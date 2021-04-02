@@ -18,17 +18,14 @@ class Hardware:
     def get_obj_by_name(obj_name, list_objects):
         return [obj for obj in list_objects if obj.name == obj_name][0]
 
-    @staticmethod
-    def has_enough_capacity(capacity, used_capacity, software):
-        return capacity >= used_capacity + software.capacity_consumption
+    def has_enough_capacity(self, software):
+        return self.capacity >= self.used_capacity + software.capacity_consumption
 
-    @staticmethod
-    def has_enough_memory(memory, used_memory, software):
-        return memory >= used_memory + software.memory_consumption
+    def has_enough_memory(self, software):
+        return self.memory >= self.used_memory + software.memory_consumption
 
     def install(self, software):
-        if not self.has_enough_capacity(self.capacity, self.used_capacity, software) or\
-                not self.has_enough_memory(self.memory, self.used_memory, software):
+        if not self.has_enough_capacity(software) or not self.has_enough_memory(software):
             raise Exception("Software cannot be installed")
         self.software_components.append(software)
 
