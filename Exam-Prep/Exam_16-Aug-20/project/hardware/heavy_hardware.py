@@ -5,4 +5,4 @@ class HeavyHardware(Hardware):
     TYPE = "Heavy"
 
     def __init__(self, name, capacity, memory):
-        super().__init__(name, self.TYPE, int(capacity * 2), int(memory * 0.75))
+        super().__init__(name, self.TYPE, capacity * 2, int(memory * 0.75))
