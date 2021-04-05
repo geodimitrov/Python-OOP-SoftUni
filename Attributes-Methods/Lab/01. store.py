@@ -3,32 +3,40 @@ class Store:
         self.name = name
         self.type = type
         self.capacity = capacity
-        self.items = {}
+        self.items = {}       # item_name: quantity
 
     def __repr__(self):
         return f"{self.name} of type {self.type} with capacity {self.capacity}"
+
+    @staticmethod
+    def can_add_item(items, capacity):
+        items_count = sum(value for value in items.values())
+        return capacity > items_count
+
+    @staticmethod
+    def can_remove_item(items, item, amount):
+        return item in items and amount <= items[item]
 
     @classmethod
     def from_size(cls, name, type, size):
         capacity = size // 2
         return cls(name, type, capacity)
 
-
-    def add_item(self, item_name: str):
-        total_items_count = sum(key for key in self.items.keys())
-        if total_items_count + 1 > self.capacity:
+    def add_item(self, item_name):
+        if not self.can_add_item(self.items, self.capacity):
             return "Not enough capacity in the store"
 
         if item_name not in self.items:
             self.items[item_name] = 0
+
         self.items[item_name] += 1
         return f"{item_name} added to the store"
 
     def remove_item(self, item_name, amount):
-        if item_name in self.items and amount <= self.items[item_name]:
-            self.items[item_name] -= amount
-            return f"{amount} {item_name} removed from the store"
-        return f"Cannot remove {amount} {item_name}"
+        if not self.can_remove_item(self.items, item_name, amount):
+            return f"Cannot remove {amount} {item_name}"
+        self.items[item_name] -= amount
+        return f"{amount} {item_name} removed from the store"
 
 
 # Test Code
