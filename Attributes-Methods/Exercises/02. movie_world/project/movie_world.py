@@ -16,11 +16,9 @@ class MovieWorld:
     def customer_capacity():
         return 10
 
-    def get_customer(self, customer_id):
-        return [customer for customer in self.customers if customer.id == customer_id][0]
-
-    def get_dvd(self, dvd_id):
-        return [dvd for dvd in self.dvds if dvd.id == dvd_id][0]
+    @staticmethod
+    def get_obj_by_id(objects, object_id):
+        return [obj for obj in objects if obj.id == object_id][0]
 
     def add_customer(self, customer):
         if len(self.customers) < self.customer_capacity():
@@ -31,8 +29,8 @@ class MovieWorld:
             self.dvds.append(dvd)
 
     def rent_dvd(self, customer_id, dvd_id):
-        customer = self.get_customer(customer_id)
-        dvd = self.get_dvd(dvd_id)
+        customer = self.get_obj_by_id(self.customers, customer_id)
+        dvd = self.get_obj_by_id(self.dvds, dvd_id)
         if dvd in customer.rented_dvds:
             return f"{customer.name} has already rented {dvd.name}"
         if dvd.is_rented:
@@ -44,8 +42,8 @@ class MovieWorld:
         return f"{customer.name} has successfully rented {dvd.name}"
 
     def return_dvd(self, customer_id, dvd_id):
-        customer = self.get_customer(customer_id)
-        dvd = self.get_dvd(dvd_id)
+        customer = self.get_obj_by_id(self.customers, customer_id)
+        dvd = self.get_obj_by_id(self.dvds, dvd_id)
         if dvd not in customer.rented_dvds:
             return f"{customer.name} does not have that DVD"
         customer.rented_dvds.remove(dvd)

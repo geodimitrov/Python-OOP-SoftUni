@@ -7,28 +7,28 @@ class Gym:
         self.subscriptions = []
 
     @staticmethod
-    def add_obj_to_collection(obj, collection):
-        if obj not in collection:
-            collection.append(obj)
-
-    @staticmethod
     def get_obj(id, objects):
         return [obj for obj in objects if obj.id == id][0]
 
     def add_customer(self, customer):
-        self.add_obj_to_collection(customer, self.customers)
+        if customer not in self. customers:
+            self.customers.append(customer)
 
     def add_trainer(self, trainer):
-        self.add_obj_to_collection(trainer, self.trainers)
+        if trainer not in self.trainers:
+            self.trainers.append(trainer)
 
     def add_equipment(self, equipment):
-        self.add_obj_to_collection(equipment, self.equipment)
+        if equipment not in self.equipment:
+            self.equipment.append(equipment)
 
     def add_plan(self, plan):
-        self.add_obj_to_collection(plan, self.plans)
+        if plan not in self.plans:
+            self.plans.append(plan)
 
     def add_subscription(self, subscription):
-        self.add_obj_to_collection(subscription, self.subscriptions)
+        if subscription not in self.subscriptions:
+            self.subscriptions.append(subscription)
 
     def subscription_info(self, subscription_id):
         subscription = self.get_obj(subscription_id, self.subscriptions)
