@@ -2,7 +2,7 @@ from project.appliances.appliance import Appliance
 
 
 class Stove(Appliance):
-    __COST = 0.7
+    default_cost = 0.7
 
     def __init__(self):
-        super().__init__(Stove.__COST)
+        super().__init__(self.default_cost)
